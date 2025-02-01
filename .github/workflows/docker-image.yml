@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Config docker buildx
+        uses: docker/setup-buildx-action@v3.8.0
+
+      - name: Build images
+        run: |
+          docker build -t drop-sand-simulator:latest .
+
+      - name: Save image as artifact
+        run: |
+          docker save drop-sand-simulator:latest -o drop-sand-simulator.tar
+
+      - name: Upload artifcat
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: drop-sand-sim-docker-image
+          path: drop-sand-simulator.tar
+          
