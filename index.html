@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Square Canvas</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+    canvas {
+      background-color: white;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const size = Math.floor(window.innerHeight * 0.9);
+    canvas.width = size;
+    canvas.height = size;
+
+    const gridSize = 50;
+    const cellSize = size / gridSize;
+
+    const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0));
+    
+    function drawGrid() {
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          const currGridValue = grid[row][col]
+
+          if (currGridValue === 1) {
+            ctx.fillStyle = "#CBBD93"
+            ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
+          } else {
+            ctx.fillStyle = "white"
+            ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
+          }
+        }
+      }
+    }
+
+    drawGrid()
+
+    canvas.addEventListener("mousedown", event => {
+      const rect = canvas.getBoundingClientRect();
+      const x = event.offsetX
+      const y = event.offsetY
+      
+      const col = Math.floor(x / cellSize)
+      const row = Math.floor(y / cellSize)
+
+      function dropSand(currentRow, currentCol) {
+        if (currentRow >= gridSize) return;
+        
+        setTimeout(() => {
+          if (grid[currentRow][currentCol] === 1) {
+            if (grid[currentRow][currentCol-1] === 0) {
+              grid[currentRow-1][currentCol] = 0
+              grid[currentRow][currentCol-1] = 1
+              drawGrid()
+              dropSand(currentRow + 1, currentCol-1)
+            }
+            if (grid[currentRow][currentCol+1] === 0) {
+              grid[currentRow-1][currentCol] = 0
+              grid[currentRow][currentCol+1] = 1
+              drawGrid()
+              dropSand(currentRow + 1, currentCol+1)
+            }
+            return
+          }
+          if (currentRow > row) {
+            grid[currentRow - 1][currentCol] = 0;
+          }
+          grid[currentRow][currentCol] = 1;
+          drawGrid();
+          dropSand(currentRow + 1, currentCol);
+        }, 5);
+      }
+
+      dropSand(row, col);
+    })
+  </script>
+</body>
+</html></html>
