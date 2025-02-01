@@ -2,6 +2,8 @@
 ## Overview
 A particle physics simulation project that demonstrates granular material behavior, specifically focusing on sand particle interactions.
 
+Try it now: [Sand Simulator on GitHub Pages](https://cod3hunter.github.io/drop-sand-simulator/)
+
 ## Features
 - Real-time sand particle simulation
 - Gravity and particle collision physics
