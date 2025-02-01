@@ -1,45 +1,46 @@
 # Drop Sand Simulator
 ## Overview
-A particle physics simulation project that demonstrates granular material behavior, specifically focusing on sand particle interactions.
+An interactive visual effect demonstrating particle physics simulation where digital sand grains cascade and accumulate realistically in your browser.
 
 Try it now: [Sand Simulator on GitHub Pages](https://cod3hunter.github.io/drop-sand-simulator/)
 
 ## Features
-- Real-time sand particle simulation
-- Gravity and particle collision physics
-- Interactive environment where users can add sand particles
-- Visual representation of particle movement and interactions
+- Interactive sand particle creation and manipulation
+- Real-time physics-based particle behavior
+- Smooth visual animations and effects
+- Performance-optimized rendering engine
 
-## Requirements
-- Docker installed on your system
-- Basic understanding of container technology
+## Technical Specifications
+- Browser-based implementation using HTML5 Canvas
+- Efficient particle system architecture
+- Frame-rate optimized collision detection
+- Responsive design for various screen sizes
 
-## CI/CD Pipeline
-The project includes a Continuous Integration pipeline that:
-- Builds the Docker Image
-- Generates artifacts automatically
+## Running the Project
 
-## Running with Docker
-
-### 1. Build the Docker Image
+### Local Development
 ```bash
 git clone https://github.com/cod3hunter/drop-sand-simulator.git
-
 cd drop-sand-simulator
-
-docker build -t sand-simulator .
+npm install
+npm start
 ```
 
-### 2. Run the Container
+### Docker Deployment
 ```bash
+docker build -t sand-simulator .
 docker run -p 80:80 sand-simulator
 ```
 
-### 3. Access the Application
-Open your web browser and navigate to `http://localhost` to start using the simulator.
+Access at `http://localhost` after deployment.
 
-## Troubleshooting
-If you encounter any issues, ensure:
-- Docker daemon is running
-- Port 80 is not in use by another application
-- You have sufficient permissions to run Docker commands
+## Performance Notes
+- Supports thousands of simultaneous particles
+- Optimized for modern browsers
+- Adjustable quality settings for different devices
+
+## Browser Compatibility
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
