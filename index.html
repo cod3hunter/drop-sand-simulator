@@ -71,8 +71,7 @@
               grid[currentRow][currentCol-1] = 1
               drawGrid()
               dropSand(currentRow + 1, currentCol-1)
-            }
-            if (grid[currentRow][currentCol+1] === 0) {
+            } else if (grid[currentRow][currentCol+1] === 0) {
               grid[currentRow-1][currentCol] = 0
               grid[currentRow][currentCol+1] = 1
               drawGrid()
