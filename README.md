@@ -12,6 +12,11 @@ A particle physics simulation project that demonstrates granular material behavi
 - Docker installed on your system
 - Basic understanding of container technology
 
+## CI/CD Pipeline
+The project includes a Continuous Integration pipeline that:
+- Builds the Docker Image
+- Generates artifacts automatically
+
 ## Running with Docker
 
 ### 1. Build the Docker Image
